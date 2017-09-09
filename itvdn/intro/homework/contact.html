@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>contact</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react-dom.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser.js">
+    </script>
+</head>
+<body>
+    <div id='content'></div>
+    <script type="text/babel">
+    var CONTACTS = [
+       {
+           id: 1,
+           name: 'Darth Vader',
+           phoneNumber: '+250966666666',
+           image: 'https://pp.userapi.com/c450/g7281333/a_05d37916.jpg'
+       }, {
+           id: 2,
+           name: 'Princess Leia',
+           phoneNumber: '+250966344466',
+           image: 'http://i1.mirror.co.uk/incoming/article6819249.ece/ALTERNATES/s615/MAIN-Princess-Leia-changed-name-in-new-Star-Wars.jpg'
+       }, {
+           id: 3,
+           name: 'Luke Skywalker',
+           phoneNumber: '+250976654433',
+           image: 'https://lumiere-a.akamaihd.net/v1/images/luke-skywalker-main_5a38c454_461eebf5.jpeg?region=0%2C0%2C1536%2C864&width=768'
+       }, {
+           id: 4,
+           name: 'Chewbacca',
+           phoneNumber: '+250456784935',
+           image: 'https://aprendeeneagrama.files.wordpress.com/2013/06/chewbacca.jpg?w=593'
+       }
+   ];
+   var Contact = React.createClass({
+     render() {
+       return (
+         <li className="contact">
+           <img className="contact-photo" src={this.props.img} alt={this.props.name} width="60px" height="60px"/>
+          <div className="contact-name">
+            {this.props.name}
+          </div>
+          <div className="contact-phone">
+            {this.props.phone}
+          </div>
+         </li>
+       );
+     }
+   });
+   var ContactList = React.createClass({
+      getInitialState() {
+        return {
+          display: CONTACTS
+        }
+      },
+     handleSearch(event) {
+        var searchQuery = event.target.value.toLowerCase();
+        var display = CONTACTS.filter((el)=>{
+           var value = el.name.toLowerCase();
+           return value.indexOf(searchQuery) !== -1;
+        });
+        this.setState({
+            display: display
+        })
+     },
+     render() {
+       return (
+         <div className="contacts">
+          <input type="text" className="search-field" onChange={this.handleSearch}/>
+          <ul className="contact-list">
+            {
+              this.state.display.map((element) => {
+                return (<Contact key={element.id} name={element.name} phone={element.phoneNumber} img={element.image}/>)
+              })
+            }
+          </ul>
+         </div>
+       );
+     }
+   });
+
+   ReactDOM.render(
+       <ContactList />,
+       document.getElementById('content')
+   );
+    </script>
+</body>
+</html>
+
+
+Усовершенствовать список контактов, написаный на уроке. При клике на контакт, он должен разворачиваться
+ (увеличиваться в высоте) и должна отображаться какая-то дополнительная информация о контакте
+ (например, адрес и email). При повторном клике, информация должна сворачиваться.
+
+Подсказка
+
+Для того, чтобы контакт разворачивался, в компоненте Contact нужно добавить состояние isOpened.
+ Обрабатывать событие onClick, а в обработчике - изменять состояние на противоположное предыдущему.
+  В методе render в зависимости от значения this.state.isOpened отображать либо сокращенную информацию о контактах, либо полную.

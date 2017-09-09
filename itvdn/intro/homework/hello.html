@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello user</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react-dom.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser.js">
+    </script>
+</head>
+<body>
+    <div id='content'></div>
+    <script type="text/babel">
+        var HelloUser = React.createClass({
+            getInitialState(){
+                return ({
+                    name: 'stronger'
+                });
+            },
+            handleName(event) {
+                this.setState({name: event.target.value});
+            },
+            render() {
+                return (
+                    <div className="hello">
+                        <h1 className="hello-title">Hello {this.state.name}</h1>
+                        <div>
+                            <input type="text" onChange={this.handleName} value={this.state.name} />
+                        </div>
+                    </div>
+                );
+            }
+        });
+        ReactDOM.render(
+            <HelloUser />,
+            document.getElementById('content')
+        );
+    </script>
+</body>
+</html>
