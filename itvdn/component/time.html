@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>timer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser.js"></script>
+</head>
+<body>
+    <div id='content'></div>
+
+    <script type="text/babel">
+        var Timer = React.createClass({
+            getInitialState() {
+                return {
+                    seconds: 0
+                }
+            },
+            componentDidMount() {
+                this.timer = setInterval(this.handelTick, 1000);
+            },
+            componentWillUnmount(){
+                clearInterval(this.timer);
+            },
+            handelTick() {
+                this.setState({ seconds: this.state.seconds + 1});
+            },
+            render: function() {
+                return (
+                    <h1> Already go {this.state.seconds} seconds</h1>
+                );
+            }
+        });
+        ReactDOM.render(
+            <Timer name="Yevhen" lname="Kondratyev"/>,
+            document.getElementById('content')
+        );
+    </script>
+</body>
+</html>
