@@ -1,0 +1,23 @@
+.note {
+    width: 200px;
+    height: auto;
+    box-shadow: 10px 11px 15px -1px rgba(0,0,0,0.27);
+    border-radius: 7px;
+    padding: 15px;
+    margin-bottom: 7px;
+    transition: box-shadow .3s;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.note:hover {
+    box-shadow: 10px 11px 13px 7px rgba(0,0,0,0.32);
+}
+
+.delete-note {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: rgba(0,0,0,0.6);
+    cursor: pointer;
+}

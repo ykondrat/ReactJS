@@ -2,6 +2,7 @@ import React from 'react';
 import createReactClass from 'create-react-class';
 import NoteEditor from './NoteEditor.jsx';
 import NoteGrid from './NoteGrid.jsx';
+import './style/NoteApp.css';
 
 const NoteApp = createReactClass({
     getInitialState() {
@@ -33,7 +34,7 @@ const NoteApp = createReactClass({
     render() {
         return (
             <div className="notes-app">
-                <h2 className="app-header">NotesApp</h2>
+                <h2 className="app-header">NoteApp</h2>
                 <NoteEditor onNoteAdd={this.handleNoteAdd} />
                 <NoteGrid notes={this.state.notes} onNoteDelete={this.handleNoteDelete} />
             </div>

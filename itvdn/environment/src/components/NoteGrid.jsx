@@ -1,6 +1,7 @@
 import React from 'react';
 import Note from './Note.jsx';
 import createReactClass from 'create-react-class';
+import './style/NoteGrid.css';
 
 const NoteGrid = createReactClass({
     componentDidMount() {
