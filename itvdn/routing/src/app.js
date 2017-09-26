@@ -1,18 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App.jsx';
-import App2 from './components/App.jsx';
-//import { HashRouter,Route } from 'react-router';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import About from './components/About.jsx';
+import Inbox from './components/Inbox.jsx';
+import Message from './components/Message.jsx';
+import { Router, Route, hashHistory } from 'react-router';
 
 ReactDOM.render(
-    <Router>
-        <div>
-            <Route exact={true} path='/' component={App}>
+    <Router history={hashHistory}>
+        <Route path='/' component={App}>
+            <Route path='/about' component={About}/>
+            <Route path='/inbox' component={Inbox}>
+                <Route path='/inbox/message/:messageId' component={Message} />
             </Route>
-            <Route path='/hello' component={App2}>
-            </Route>
-        </div>
+        </Route>
     </Router>,
     document.getElementById('content')
 );
